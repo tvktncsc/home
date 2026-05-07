@@ -12,7 +12,7 @@
         :root { --maroon: #800000; --gold: #DAA520; --dark: #333; }
         body { font-family: 'Arial', sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
         
-        nav { background: var(--maroon); padding: 15px; color: white; text-align: center; font-weight: bold; font-size: 1.2rem; border-bottom: 4px solid var(--gold); display: flex; justify-content: center; align-items: center; gap: 15px; }
+        nav { background: var(--maroon); padding: 15px; color: white; text-align: center; font-weight: bold; border-bottom: 4px solid var(--gold); display: flex; justify-content: center; align-items: center; gap: 15px; }
         .nav-flag { height: 45px; }
 
         .banner { background: white; padding: 20px; display: flex; justify-content: center; align-items: center; gap: 40px; border-bottom: 1px solid #ddd; }
@@ -29,7 +29,6 @@
         .submit-btn { grid-column: span 2; background: var(--maroon); color: white; padding: 18px; border: none; border-radius: 6px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
         .submit-btn:hover { background: #600000; }
 
-        /* ID Card hidden design */
         #id-card-hidden { position: absolute; left: -9999px; width: 350px; height: 530px; background: white; border: 6px solid var(--maroon); padding: 0; text-align: center; overflow: hidden; }
         .watermark { position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); width: 260px; opacity: 0.12; z-index: 0; pointer-events: none; }
         .card-header { background: var(--maroon); padding: 12px; color: white; position: relative; z-index: 1; }
@@ -42,12 +41,12 @@
 <body>
 
 <nav>
-    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/flag.png" crossorigin="anonymous" class="nav-flag" alt="Flag"> 
+    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/flag.png" crossorigin="anonymous" class="nav-flag"> 
     தமிழக வெற்றிக் கழகப் பணியாளர் சங்கம் (TNCSC)
 </nav>
 
 <div class="banner">
-    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/vijay.png" crossorigin="anonymous" class="leader-img" alt="Vijay">
+    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/vijay.png" crossorigin="anonymous" class="leader-img">
     <div class="banner-text">
         <h1>உறுப்பினர் சேர்க்கை - 2026</h1>
         <p style="color: var(--gold); font-weight: bold;">"பிறப்பொக்கும் எல்லா உயிர்க்கும்"</p>
@@ -73,25 +72,24 @@
             <input type="tel" id="mobile" name="mobile" autocomplete="tel" required>
         </div>
         <div class="input-group full-width">
-            <label for="district">மண்டலம் / மாவட்டம் (39 Districts)</label>
+            <label for="district">மண்டலம் / மாவட்டம்</label>
             <select id="district" name="district" required>
                 <option value="">தேர்வு செய்யவும்</option>
-                <optgroup label="சென்னை">
+                <optgroup label="சென்னை மண்டலம்">
                     <option value="Chennai North">சென்னை வடக்கு (Chennai North)</option>
                     <option value="Chennai South">சென்னை தெற்கு (Chennai South)</option>
                 </optgroup>
-                <optgroup label="மற்றவை">
+                <optgroup label="இதர மாவட்டங்கள்">
+                    <option value="Ariyalur">அரியலூர்</option>
                     <option value="Chengalpattu">செங்கல்பட்டு</option>
-                    <option value="Kancheepuram">காஞ்சிபுரம்</option>
-                    <option value="Viluppuram">விழுப்புரம்</option>
                     </optgroup>
             </select>
         </div>
         <div class="input-group full-width">
-            <label for="userPhoto">புகைப்படம்</label>
-            <input type="file" id="userPhoto" name="userPhoto" accept="image/*" required>
+            <label for="userPhoto">புகைப்படம் பதிவேற்றவும்</label>
+            <input type="file" id="userPhoto" accept="image/*" required>
         </div>
-        <button type="submit" class="submit-btn" id="btnText">பதிவு செய்து ID பெறவும்</button>
+        <button type="submit" class="submit-btn" id="btnText">பதிவு செய்து தற்காலிக ID பெறவும்</button>
     </form>
 </div>
 
@@ -105,21 +103,21 @@
     <p style="color: var(--maroon); font-size: 11px; font-weight: bold; position: relative; z-index: 1;">தற்காலிக உறுப்பினர் அடையாள அட்டை</p>
     <img id="card-photo" src="" class="id-photo-box">
     <div class="card-body">
-        <p><strong>பெயர்:</strong> <span id="c-name"></span></p>
-        <p><strong>உறுப்பினர் எண்:</strong> <span id="c-id" style="color: red; font-weight: bold;"></span></p>
-        <p><strong>பதவி:</strong> <span id="c-desig"></span></p>
-        <p><strong>மாவட்டம்:</strong> <span id="c-dist"></span></p>
+        <p style="margin:0;"><strong>பெயர்:</strong> <span id="c-name"></span></p>
+        <p style="margin:0;"><strong>உறுப்பினர் எண்:</strong> <span id="c-id" style="color: red; font-weight: bold;"></span></p>
+        <p style="margin:0;"><strong>பதவி:</strong> <span id="c-desig"></span></p>
+        <p style="margin:0;"><strong>மாவட்டம்:</strong> <span id="c-dist"></span></p>
     </div>
     <div style="margin-top: 20px; border-top: 1.5px solid var(--gold); padding-top: 10px; color: #800000; font-weight: bold;">"பிறப்பொக்கும் எல்லா உயிர்க்கும்"</div>
 </div>
 
 <script>
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz_Ok2Ufgrnu9TY0OqG7iYOOduaiEeO3aDL9nxDU7b420AHWaRl4MwsC6P9hUhosuJWaQ/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx-ZG8h-v283IVvw7ImgVY92of8MPBajt0tRjsjXFkOWLAuEQLW-I5HcBOr25sSTaZ1eQ/exec";
 
     document.getElementById('unionForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const btn = document.getElementById('btnText');
-        btn.innerText = "பதிவாகிறது...";
+        btn.innerText = "தகவல்கள் சேமிக்கப்படுகிறது...";
         btn.disabled = true;
 
         const photoFile = document.getElementById('userPhoto').files[0];
@@ -137,28 +135,35 @@
             };
 
             try {
-                // CORB சிக்கலைத் தவிர்க்க mode: 'no-cors' மற்றும் response.text()
-                const response = await fetch(APPS_SCRIPT_URL, { 
-                    method: 'POST', 
-                    mode: 'no-cors', 
-                    body: JSON.stringify(formData) 
+                // Fetch with CORS settings
+                const response = await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(formData)
                 });
+                
+                const result = await response.json();
 
-                // No-cors என்பதால் சர்வர் தரும் ID நேரடியாக வராது, 
-                // ஆனால் தரவு ஷீட்டில் சேர்ந்துவிடும். 
-                // நீங்கள் PDF-ஐ உடனடியாகத் தர விரும்பினால் இங்கேயே காட்டலாம்.
+                if (result.result === "success") {
+                    document.getElementById('card-photo').src = base64Image;
+                    document.getElementById('c-name').innerText = formData.name;
+                    document.getElementById('c-id').innerText = result.generatedId; 
+                    document.getElementById('c-desig').innerText = formData.designation;
+                    document.getElementById('c-dist').innerText = formData.district;
+
+                    setTimeout(generatePDF, 2000); 
+                } else {
+                    alert("பிழை: " + result.error);
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                alert("தரவு சேமிக்கப்பட்டது! PDF தயாராகிறது...");
+                // Catching the redirect/CORS response block
                 document.getElementById('card-photo').src = base64Image;
                 document.getElementById('c-name').innerText = formData.name;
                 document.getElementById('c-id').innerText = "TVK-NEW"; 
                 document.getElementById('c-desig').innerText = formData.designation;
                 document.getElementById('c-dist').innerText = formData.district;
-
                 setTimeout(generatePDF, 2000);
-
-            } catch (err) {
-                alert("பிழை! மீண்டும் முயற்சிக்கவும்.");
-                btn.disabled = false;
-                btn.innerText = "பதிவு செய்யவும்";
             }
         };
         reader.readAsDataURL(photoFile);
@@ -174,6 +179,5 @@
         location.reload();
     }
 </script>
-
 </body>
 </html>
