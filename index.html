@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TVK-TNCSC Union | Full Digital Portal</title>
+    <title>TVK-TNCSC Union | Digital Portal</title>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -11,37 +11,81 @@
     <style>
         :root { --maroon: #800000; --gold: #DAA520; --dark: #333; }
         body { font-family: 'Arial', sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
-        nav { background: var(--maroon); padding: 15px 5%; color: white; text-align: center; font-weight: bold; font-size: 1.2rem; border-bottom: 4px solid var(--gold); }
-        .main-container { max-width: 850px; margin: 30px auto; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 10px solid var(--maroon); }
-        .form-header { padding: 20px; text-align: center; border-bottom: 1px solid #eee; }
-        .form-header h1 { color: var(--maroon); margin: 0; }
+        
+        /* Navbar with TVK Colors */
+        nav { 
+            background: var(--maroon); 
+            padding: 15px; 
+            color: white; 
+            text-align: center; 
+            font-weight: bold; 
+            font-size: 1.2rem; 
+            border-bottom: 4px solid var(--gold);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+        .nav-flag { height: 40px; border-radius: 3px; }
+
+        /* Banner with Leader Image */
+        .banner {
+            background: white;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            border-bottom: 2px solid #eee;
+        }
+        .leader-img { height: 130px; border-radius: 10px; border: 2px solid var(--gold); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .banner-text h1 { color: var(--maroon); margin: 0; font-size: 1.8rem; }
+        .banner-text p { color: var(--gold); font-weight: bold; margin: 5px 0; font-size: 1.1rem; }
+
+        .main-container { max-width: 850px; margin: 20px auto; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 10px solid var(--maroon); }
+        
         form { padding: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .input-group { display: flex; flex-direction: column; }
         .full-width { grid-column: span 2; }
         label { font-weight: bold; margin-bottom: 5px; color: var(--dark); }
         input, select { padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; }
-        .submit-btn { grid-column: span 2; background: var(--maroon); color: white; padding: 18px; border: none; border-radius: 5px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .submit-btn:hover { background: #600000; }
-        .submit-btn:disabled { background: #ccc; }
-        #id-card-hidden { position: absolute; left: -9999px; width: 350px; height: 520px; background: white; border: 5px solid var(--maroon); padding: 20px; text-align: center; }
-        .temp-badge { background: var(--maroon); color: white; padding: 5px; font-size: 12px; font-weight: bold; margin-bottom: 10px; }
-        .id-photo-box { width: 130px; height: 150px; border: 2px solid var(--maroon); margin: 15px auto; object-fit: cover; }
+        
+        .submit-btn { grid-column: span 2; background: var(--maroon); color: white; padding: 18px; border: none; border-radius: 5px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .submit-btn:hover { background: #600000; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+
+        /* ID Card hidden for Rendering */
+        #id-card-hidden { 
+            position: absolute; left: -9999px; width: 350px; height: 530px; 
+            background: white; border: 6px solid var(--maroon); padding: 0; text-align: center; 
+        }
+        .card-header { background: var(--maroon); padding: 12px; color: white; }
+        .card-flag-mini { height: 35px; margin-bottom: 5px; }
+        .leader-mini { position: absolute; right: 15px; top: 60px; height: 70px; border: 1px solid var(--gold); border-radius: 5px; }
+        .id-photo-box { width: 120px; height: 145px; border: 2px solid var(--maroon); margin: 15px auto; object-fit: cover; background: #f9f9f9; }
+        .temp-label { color: var(--maroon); font-size: 11px; font-weight: bold; margin-top: 5px; }
     </style>
 </head>
 <body>
 
-<nav>தமிழக வெற்றிக் கழகப் பணியாளர் சங்கம் (TNCSC)</nav>
+<nav>
+    <img src="https://www.tvkvijay.com/assets/images/flag.png" class="nav-flag" alt="TVK Flag"> 
+    தமிழக வெற்றிக் கழகப் பணியாளர் சங்கம் (TNCSC)
+</nav>
+
+<div class="banner">
+    <img src="https://www.tvkvijay.com/assets/images/leader.png" class="leader-img" alt="Thalapathy Vijay">
+    <div class="banner-text">
+        <h1>உறுப்பினர் சேர்க்கை - 2026</h1>
+        <p>"பிறப்பொக்கும் எல்லா உயிர்க்கும்"</p>
+        <span style="color: #666; font-size: 0.9rem;">(தமிழ்நாடு நுகர்பொருள் வாணிபக் கழகம்)</span>
+    </div>
+</div>
 
 <div class="main-container">
-    <div class="form-header">
-        <h1>உறுப்பினர் சேர்க்கை படிவம்</h1>
-        <p>தமிழ்நாடு நுகர்பொருள் வாணிபக் கழக ஊழியர்களுக்கான தற்காலிக அடையாள அட்டை</p>
-    </div>
-
     <form id="unionForm">
         <div class="input-group">
-            <label>முழு பெயர் (Tamil)</label>
-            <input type="text" id="name" placeholder="பெயரை உள்ளிடவும்" required>
+            <label>பெயர் (Tamil)</label>
+            <input type="text" id="name" placeholder="உங்கள் பெயர்" required>
         </div>
         <div class="input-group">
             <label>பணியாளர் எண் (Emp ID)</label>
@@ -56,72 +100,85 @@
             <input type="tel" id="mobile" placeholder="9876543210" required>
         </div>
         <div class="input-group full-width">
-            <label>மண்டலம் / மாவட்டம்</label>
+            <label>மண்டலம் / மாவட்டம் (39 மாவட்டங்கள்)</label>
             <select id="district" required>
                 <option value="">மாவட்ைத் தேர்வு செய்யவும்</option>
-                <option value="Chennai North">சென்னை வடக்கு (Chennai North)</option>
-                <option value="Chennai South">சென்னை தெற்கு (Chennai South)</option>
-                <option value="Ariyalur">அரியலூர்</option>
-                <option value="Chengalpattu">செங்கல்பட்டு</option>
-                <option value="Coimbatore">கோயம்புத்தூர்</option>
-                <option value="Cuddalore">கடலூர்</option>
-                <option value="Dharmapuri">தர்மபுரி</option>
-                <option value="Dindigul">திண்டுக்கல்</option>
-                <option value="Erode">ஈரோடு</option>
-                <option value="Kallakurichi">கள்ளக்குறிச்சி</option>
-                <option value="Kancheepuram">காஞ்சிபுரம்</option>
-                <option value="Kanniyakumari">கன்னியாகுமரி</option>
-                <option value="Karur">கரூர்</option>
-                <option value="Krishnagiri">கிருஷ்ணகிரி</option>
-                <option value="Madurai">மதுரை</option>
-                <option value="Mayiladuthurai">மயிலாடுதுறை</option>
-                <option value="Nagapattinam">நாகப்பட்டினம்</option>
-                <option value="Namakkal">நாமக்கல்</option>
-                <option value="Nilgiris">நீலகிரி</option>
-                <option value="Perambalur">பெரம்பலூர்</option>
-                <option value="Pudukkottai">புதுக்கோட்டை</option>
-                <option value="Ramanathapuram">ராமநாதபுரம்</option>
-                <option value="Ranipet">ராணிப்பேட்டை</option>
-                <option value="Salem">சேலம்</option>
-                <option value="Sivaganga">சிவங்கை</option>
-                <option value="Tenkasi">தென்காசி</option>
-                <option value="Thanjavur">தஞ்சாவூர்</option>
-                <option value="Theni">தேனி</option>
-                <option value="Thoothukudi">தூத்துக்குடி</option>
-                <option value="Tiruchirappalli">திருச்சிராப்பள்ளி</option>
-                <option value="Tirunelveli">திருநெல்வேலி</option>
-                <option value="Tirupathur">திருப்பத்தூர்</option>
-                <option value="Tiruppur">திருப்பூர்</option>
-                <option value="Tiruvallur">திருவள்ளூர்</option>
-                <option value="Tiruvannamalai">திருவண்ணாமலை</option>
-                <option value="Tiruvarur">திருவாரூர்</option>
-                <option value="Vellore">வேலூர்</option>
-                <option value="Viluppuram">விழுப்புரம்</option>
-                <option value="Virudhunagar">விருதுநகர்</option>
+                <optgroup label="தலைநகரம்">
+                    <option value="Chennai North">சென்னை வடக்கு (Chennai North)</option>
+                    <option value="Chennai South">சென்னை தெற்கு (Chennai South)</option>
+                </optgroup>
+                <optgroup label="இதர மாவட்டங்கள்">
+                    <option value="Ariyalur">அரியலூர்</option>
+                    <option value="Chengalpattu">செங்கல்பட்டு</option>
+                    <option value="Coimbatore">கோயம்புத்தூர்</option>
+                    <option value="Cuddalore">கடலூர்</option>
+                    <option value="Dharmapuri">தர்மபுரி</option>
+                    <option value="Dindigul">திண்டுக்கல்</option>
+                    <option value="Erode">ஈரோடு</option>
+                    <option value="Kallakurichi">கள்ளக்குறிச்சி</option>
+                    <option value="Kancheepuram">காஞ்சிபுரம்</option>
+                    <option value="Kanniyakumari">கன்னியாகுமரி</option>
+                    <option value="Karur">கரூர்</option>
+                    <option value="Krishnagiri">கிருஷ்ணகிரி</option>
+                    <option value="Madurai">மதுரை</option>
+                    <option value="Mayiladuthurai">மயிலாடுதுறை</option>
+                    <option value="Nagapattinam">நாகப்பட்டினம்</option>
+                    <option value="Namakkal">நாமக்கல்</option>
+                    <option value="Nilgiris">நீலகிரி</option>
+                    <option value="Perambalur">பெரம்பலூர்</option>
+                    <option value="Pudukkottai">புதுக்கோட்டை</option>
+                    <option value="Ramanathapuram">ராமநாதபுரம்</option>
+                    <option value="Ranipet">ராணிப்பேட்டை</option>
+                    <option value="Salem">சேலம்</option>
+                    <option value="Sivaganga">சிவங்கை</option>
+                    <option value="Tenkasi">தென்காசி</option>
+                    <option value="Thanjavur">தஞ்சாவூர்</option>
+                    <option value="Theni">தேனி</option>
+                    <option value="Thoothukudi">தூத்துக்குடி</option>
+                    <option value="Tiruchirappalli">திருச்சிராப்பள்ளி</option>
+                    <option value="Tirunelveli">திருநெல்வேலி</option>
+                    <option value="Tirupathur">திருப்பத்தூர்</option>
+                    <option value="Tiruppur">திருப்பூர்</option>
+                    <option value="Tiruvallur">திருவள்ளூர்</option>
+                    <option value="Tiruvannamalai">திருவண்ணாமலை</option>
+                    <option value="Tiruvarur">திருவாரூர்</option>
+                    <option value="Vellore">வேலூர்</option>
+                    <option value="Viluppuram">விழுப்புரம்</option>
+                    <option value="Virudhunagar">விருதுநகர்</option>
+                </optgroup>
             </select>
         </div>
         <div class="input-group full-width">
-            <label>புகைப்படம் பதிவேற்றவும்</label>
+            <label>உறுப்பினர் புகைப்படம்</label>
             <input type="file" id="userPhoto" accept="image/*" required>
         </div>
-        <button type="submit" class="submit-btn" id="btnText">பதிவு செய்யவும் & PDF பெறவும்</button>
+        <button type="submit" class="submit-btn" id="btnText">பதிவு செய்து தற்காலிக ID பெறவும்</button>
     </form>
 </div>
 
 <div id="id-card-hidden">
-    <div class="temp-badge">தற்காலிக அடையாள அட்டை</div>
-    <h2 style="color: #800000; margin: 0; font-size: 20px;">தமிழக வெற்றிக் கழகம்</h2>
-    <p style="font-size: 11px; font-weight: bold; margin-bottom: 5px;">TVK-TNCSC Union</p>
-    <img id="card-photo" src="" class="id-photo-box">
-    <div style="text-align: left; line-height: 1.8; padding: 0 10px; font-size: 14px;">
-        <p><strong>பெயர்:</strong> <span id="c-name"></span></p>
-        <p><strong>உறுப்பினர் எண்:</strong> <span id="c-id" style="color: red; font-weight: bold;"></span></p>
-        <p><strong>பதவி:</strong> <span id="c-desig"></span></p>
-        <p><strong>மாவட்டம்:</strong> <span id="c-dist"></span></p>
+    <div class="card-header">
+        <img src="https://www.tvkvijay.com/assets/images/flag.png" class="card-flag-mini"><br>
+        <span style="font-size: 18px; letter-spacing: 1px;">தமிழக வெற்றிக் கழகம்</span>
     </div>
-    <div style="margin-top: 20px; border-top: 1px solid #ddd; padding-top: 10px; color: #800000; font-weight: bold;">
+    
+    <img src="https://www.tvkvijay.com/assets/images/leader.png" class="leader-mini">
+    
+    <p class="temp-label">தற்காலிக உறுப்பினர் அடையாள அட்டை (TNCSC UNION)</p>
+    
+    <img id="card-photo" src="" class="id-photo-box">
+    
+    <div style="text-align: left; line-height: 2; padding: 0 25px; font-size: 14px;">
+        <p style="margin:0;"><strong>பெயர்:</strong> <span id="c-name"></span></p>
+        <p style="margin:0;"><strong>உறுப்பினர் எண்:</strong> <span id="c-id" style="color: red; font-weight: bold;"></span></p>
+        <p style="margin:0;"><strong>பதவி:</strong> <span id="c-desig"></span></p>
+        <p style="margin:0;"><strong>மாவட்டம்:</strong> <span id="c-dist"></span></p>
+    </div>
+    
+    <div style="margin-top: 20px; border-top: 1.5px solid var(--gold); padding-top: 10px; color: #800000; font-weight: bold; font-size: 15px;">
         "பிறப்பொக்கும் எல்லா உயிர்க்கும்"
     </div>
+    <p style="font-size: 9px; color: #777;">*நிர்வாக முடிவுகளுக்கு உட்பட்டது</p>
 </div>
 
 <script>
@@ -130,7 +187,7 @@
     document.getElementById('unionForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const btn = document.getElementById('btnText');
-        btn.innerText = "தகவல்கள் சேமிக்கப்படுகிறது...";
+        btn.innerText = "உறுப்பினர் விபரங்கள் சேமிக்கப்படுகிறது...";
         btn.disabled = true;
 
         const photoFile = document.getElementById('userPhoto').files[0];
@@ -152,25 +209,23 @@
                     method: 'POST',
                     body: JSON.stringify(formData)
                 });
-                
                 const result = await response.json();
 
                 if (result.result === "success") {
-                    // Update ID Card Template
+                    // அட்டைக்குத் தகவல்களை ஏற்றுதல்
                     document.getElementById('card-photo').src = base64Image;
                     document.getElementById('c-name').innerText = formData.name;
                     document.getElementById('c-id').innerText = result.generatedId; 
                     document.getElementById('c-desig').innerText = formData.designation;
                     document.getElementById('c-dist').innerText = formData.district;
 
+                    // PDF உருவாக்குதல்
                     setTimeout(generatePDF, 1000);
-                } else {
-                    throw new Error(result.error);
                 }
             } catch (err) {
-                alert("பிழை ஏற்பட்டது: " + err.message);
+                alert("தொழில்நுட்ப கோளாறு! மீண்டும் முயற்சிக்கவும்.");
                 btn.disabled = false;
-                btn.innerText = "மீண்டும் முயற்சிக்கவும்";
+                btn.innerText = "பதிவு செய்யவும்";
             }
         };
         reader.readAsDataURL(photoFile);
@@ -179,14 +234,14 @@
     async function generatePDF() {
         const { jsPDF } = window.jspdf;
         const element = document.getElementById('id-card-hidden');
-        const canvas = await html2canvas(element, { scale: 2 });
-        const imgData = canvas.toDataURL('image/png');
+        const canvas = await html2canvas(element, { scale: 2, useCORS: true });
         
         const pdf = new jsPDF('p', 'mm', 'a4');
-        pdf.addImage(imgData, 'PNG', 60, 20, 90, 130);
-        pdf.save("TVK_Temporary_ID.pdf");
-
-        alert("பதிவு முடிந்தது! உங்கள் அடையாள அட்டை பதிவிறக்கம் செய்யப்படுகிறது.");
+        // அட்டையை PDF-ன் நடுவில் வைக்க
+        pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 60, 20, 90, 136);
+        pdf.save("TVK_Temporary_Member_ID.pdf");
+        
+        alert("பதிவு வெற்றிகரமாக முடிந்தது! உங்களின் தற்காலிக அடையாள அட்டை பதிவிறக்கம் செய்யப்பட்டுள்ளது.");
         location.reload();
     }
 </script>
