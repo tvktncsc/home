@@ -26,12 +26,12 @@
         form { padding: 35px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .input-group { display: flex; flex-direction: column; }
         .full-width { grid-column: span 2; }
-        label { font-weight: bold; margin-bottom: 8px; color: var(--dark); }
+        label { font-weight: bold; margin-bottom: 8px; color: var(--dark); cursor: pointer; }
         input, select { padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; }
+        
         .submit-btn { grid-column: span 2; background: var(--maroon); color: white; padding: 18px; border: none; border-radius: 6px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
         .submit-btn:hover { background: #600000; }
 
-        /* ID Card hidden from screen */
         #id-card-hidden { 
             position: absolute; left: -9999px; width: 350px; height: 530px; 
             background: white; border: 6px solid var(--maroon); padding: 0; text-align: center; overflow: hidden;
@@ -50,12 +50,12 @@
 <body>
 
 <nav>
-    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/flag.png" crossorigin="anonymous" class="nav-flag"> 
+    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/flag.png" crossorigin="anonymous" class="nav-flag" alt="TVK Flag"> 
     தமிழக வெற்றிக் கழகப் பணியாளர் சங்கம் (TNCSC)
 </nav>
 
 <div class="banner">
-    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/vijay.png" crossorigin="anonymous" class="leader-img">
+    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/vijay.png" crossorigin="anonymous" class="leader-img" alt="Vijay Leader">
     <div class="banner-text">
         <h1>உறுப்பினர் சேர்க்கை - 2026</h1>
         <p style="color: var(--gold); font-weight: bold;">"பிறப்பொக்கும் எல்லா உயிர்க்கும்"</p>
@@ -65,24 +65,24 @@
 <div class="main-container">
     <form id="unionForm">
         <div class="input-group">
-            <label>முழு பெயர் (Tamil)</label>
-            <input type="text" id="name" placeholder="உங்கள் பெயர்" required>
+            <label for="name">முழு பெயர் (Tamil)</label>
+            <input type="text" id="name" name="name" autocomplete="name" placeholder="உங்கள் பெயர்" required>
         </div>
         <div class="input-group">
-            <label>பணியாளர் எண் (Emp ID)</label>
-            <input type="text" id="emp_id" placeholder="048XXXX" required>
+            <label for="emp_id">பணியாளர் எண் (Emp ID)</label>
+            <input type="text" id="emp_id" name="emp_id" autocomplete="off" placeholder="048XXXX" required>
         </div>
         <div class="input-group">
-            <label>பதவி (Designation)</label>
-            <input type="text" id="designation" placeholder="எ.கா: கண்காணிப்பாளர்" required>
+            <label for="designation">பதவி (Designation)</label>
+            <input type="text" id="designation" name="designation" autocomplete="organization-title" placeholder="எ.கா: கண்காணிப்பாளர்" required>
         </div>
         <div class="input-group">
-            <label>கைபேசி எண்</label>
-            <input type="tel" id="mobile" placeholder="9876543210" required>
+            <label for="mobile">கைபேசி எண்</label>
+            <input type="tel" id="mobile" name="mobile" autocomplete="tel" placeholder="9876543210" required>
         </div>
         <div class="input-group full-width">
-            <label>மண்டலம் / மாவட்டம்</label>
-            <select id="district" required>
+            <label for="district">மண்டலம் / மாவட்டம்</label>
+            <select id="district" name="district" autocomplete="address-level1" required>
                 <option value="">தேர்வு செய்யவும்</option>
                 <optgroup label="சென்னை மண்டலம்">
                     <option value="Chennai North">சென்னை வடக்கு (Chennai North)</option>
@@ -91,63 +91,28 @@
                 <optgroup label="இதர மாவட்டங்கள்">
                     <option value="Ariyalur">அரியலூர்</option>
                     <option value="Chengalpattu">செங்கல்பட்டு</option>
-                    <option value="Coimbatore">கோயம்புத்தூர்</option>
-                    <option value="Cuddalore">கடலூர்</option>
-                    <option value="Dharmapuri">தர்மபுரி</option>
-                    <option value="Dindigul">திண்டுக்கல்</option>
-                    <option value="Erode">ஈரோடு</option>
-                    <option value="Kallakurichi">கள்ளக்குறிச்சி</option>
-                    <option value="Kancheepuram">காஞ்சிபுரம்</option>
-                    <option value="Kanniyakumari">கன்னியாகுமரி</option>
-                    <option value="Karur">கரூர்</option>
-                    <option value="Krishnagiri">கிருஷ்ணகிரி</option>
-                    <option value="Madurai">மதுரை</option>
-                    <option value="Mayiladuthurai">மயிலாடுதுறை</option>
-                    <option value="Nagapattinam">நாகப்பட்டினம்</option>
-                    <option value="Namakkal">நாமக்கல்</option>
-                    <option value="Nilgiris">நீலகிரி</option>
-                    <option value="Perambalur">பெரம்பலூர்</option>
-                    <option value="Pudukkottai">புதுக்கோட்டை</option>
-                    <option value="Ramanathapuram">ராமநாதபுரம்</option>
-                    <option value="Ranipet">ராணிப்பேட்டை</option>
-                    <option value="Salem">சேலம்</option>
-                    <option value="Sivaganga">சிவங்கை</option>
-                    <option value="Tenkasi">தென்காசி</option>
-                    <option value="Thanjavur">தஞ்சாவூர்</option>
-                    <option value="Theni">தேனி</option>
-                    <option value="Thoothukudi">தூத்துக்குடி</option>
-                    <option value="Tiruchirappalli">திருச்சிராப்பள்ளி</option>
-                    <option value="Tirunelveli">திருநெல்வேலி</option>
-                    <option value="Tirupathur">திருப்பத்தூர்</option>
-                    <option value="Tiruppur">திருப்பூர்</option>
-                    <option value="Tiruvallur">திருவள்ளூர்</option>
-                    <option value="Tiruvannamalai">திருவண்ணாமலை</option>
-                    <option value="Tiruvarur">திருவாரூர்</option>
-                    <option value="Vellore">வேலூர்</option>
-                    <option value="Viluppuram">விழுப்புரம்</option>
-                    <option value="Virudhunagar">விருதுநகர்</option>
-                </optgroup>
+                    </optgroup>
             </select>
         </div>
         <div class="input-group full-width">
-            <label>புகைப்படம் பதிவேற்றவும்</label>
-            <input type="file" id="userPhoto" accept="image/*" required>
+            <label for="userPhoto">புகைப்படம் பதிவேற்றவும்</label>
+            <input type="file" id="userPhoto" name="userPhoto" accept="image/*" required>
         </div>
         <button type="submit" class="submit-btn" id="btnText">பதிவு செய்து தற்காலிக ID பெறவும்</button>
     </form>
 </div>
 
 <div id="id-card-hidden">
-    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/watermark.jpeg" crossorigin="anonymous" class="watermark">
+    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/watermark.jpeg" crossorigin="anonymous" class="watermark" alt="Watermark">
     <div class="card-header">
-        <img src="https://raw.githubusercontent.com/tvktncsc/home/main/flag.png" crossorigin="anonymous" class="card-flag-mini"><br>
-        <span style="font-size: 18px; font-weight: bold;">தமிழக வெற்றிக் கழகம்</span>
+        <img src="https://raw.githubusercontent.com/tvktncsc/home/main/flag.png" crossorigin="anonymous" class="card-flag-mini" alt="Flag">
+        <br><span style="font-size: 18px; font-weight: bold;">தமிழக வெற்றிக் கழகம்</span>
     </div>
-    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/vijay.png" crossorigin="anonymous" class="leader-mini">
+    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/vijay.png" crossorigin="anonymous" class="leader-mini" alt="Leader">
     <p style="color: var(--maroon); font-size: 11px; font-weight: bold; position: relative; z-index: 1;">
         தற்காலிக உறுப்பினர் அடையாள அட்டை
     </p>
-    <img id="card-photo" src="" class="id-photo-box">
+    <img id="card-photo" src="" class="id-photo-box" alt="Member Photo">
     <div class="card-body">
         <p style="margin:0;"><strong>பெயர்:</strong> <span id="c-name"></span></p>
         <p style="margin:0;"><strong>உறுப்பினர் எண்:</strong> <span id="c-id" style="color: red; font-weight: bold;"></span></p>
@@ -183,22 +148,17 @@
             };
 
             try {
-                // Google Apps Script-க்கு டேட்டாவை அனுப்புதல்
                 const response = await fetch(APPS_SCRIPT_URL, { method: 'POST', body: JSON.stringify(formData) });
                 const result = await response.json();
 
                 if (result.result === "success") {
-                    // ஐடி கார்டில் விபரங்களை நிரப்புதல்
                     document.getElementById('card-photo').src = base64Image;
                     document.getElementById('c-name').innerText = formData.name;
                     document.getElementById('c-id').innerText = result.generatedId; 
                     document.getElementById('c-desig').innerText = formData.designation;
                     document.getElementById('c-dist').innerText = formData.district;
 
-                    // படங்கள் லோட் ஆக சிறிது நேரம் காத்திருத்தல்
                     setTimeout(generatePDF, 1500); 
-                } else {
-                    throw new Error("Server error");
                 }
             } catch (err) {
                 alert("பிழை! மீண்டும் முயற்சிக்கவும்.");
@@ -213,20 +173,18 @@
         const { jsPDF } = window.jspdf;
         const element = document.getElementById('id-card-hidden');
         
-        // html2canvas-ல் useCORS மற்றும் allowTaint ஆன் செய்வது அவசியம்
         const canvas = await html2canvas(element, { 
             scale: 2, 
             useCORS: true, 
-            allowTaint: true,
-            backgroundColor: "#ffffff",
-            logging: false
+            allowTaint: false, // Security Best Practice
+            backgroundColor: "#ffffff"
         });
         
         const pdf = new jsPDF('p', 'mm', 'a4');
         pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 60, 20, 90, 136);
         pdf.save("TVK_Member_ID.pdf");
         
-        alert("பதிவு முடிந்தது! உங்கள் அடையாள அட்டை பதிவிறக்கம் செய்யப்படுகிறது.");
+        alert("பதிவு வெற்றிகரமாக முடிந்தது!");
         location.reload();
     }
 </script>
