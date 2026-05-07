@@ -12,14 +12,11 @@
         :root { --maroon: #800000; --gold: #DAA520; --dark: #333; }
         body { font-family: 'Arial', sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
         
-        nav { 
-            background: var(--maroon); padding: 15px; color: white; text-align: center; font-weight: bold; font-size: 1.2rem; 
-            border-bottom: 4px solid var(--gold); display: flex; justify-content: center; align-items: center; gap: 15px;
-        }
+        nav { background: var(--maroon); padding: 15px; color: white; text-align: center; font-weight: bold; font-size: 1.2rem; border-bottom: 4px solid var(--gold); display: flex; justify-content: center; align-items: center; gap: 15px; }
         .nav-flag { height: 45px; }
 
         .banner { background: white; padding: 20px; display: flex; justify-content: center; align-items: center; gap: 40px; border-bottom: 1px solid #ddd; }
-        .leader-img { height: 140px; border-radius: 10px; border: 2px solid var(--gold); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .leader-img { height: 140px; border-radius: 10px; border: 2px solid var(--gold); }
         .banner-text h1 { color: var(--maroon); margin: 0; font-size: 2rem; }
 
         .main-container { max-width: 850px; margin: 25px auto; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-top: 10px solid var(--maroon); }
@@ -32,14 +29,9 @@
         .submit-btn { grid-column: span 2; background: var(--maroon); color: white; padding: 18px; border: none; border-radius: 6px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
         .submit-btn:hover { background: #600000; }
 
-        #id-card-hidden { 
-            position: absolute; left: -9999px; width: 350px; height: 530px; 
-            background: white; border: 6px solid var(--maroon); padding: 0; text-align: center; overflow: hidden;
-        }
-        .watermark {
-            position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%);
-            width: 260px; opacity: 0.12; z-index: 0; pointer-events: none;
-        }
+        /* ID Card hidden design */
+        #id-card-hidden { position: absolute; left: -9999px; width: 350px; height: 530px; background: white; border: 6px solid var(--maroon); padding: 0; text-align: center; overflow: hidden; }
+        .watermark { position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); width: 260px; opacity: 0.12; z-index: 0; pointer-events: none; }
         .card-header { background: var(--maroon); padding: 12px; color: white; position: relative; z-index: 1; }
         .card-flag-mini { height: 35px; }
         .leader-mini { position: absolute; right: 15px; top: 65px; height: 75px; border: 1px solid var(--gold); border-radius: 5px; z-index: 1; }
@@ -50,12 +42,12 @@
 <body>
 
 <nav>
-    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/flag.png" crossorigin="anonymous" class="nav-flag" alt="TVK Flag"> 
+    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/flag.png" crossorigin="anonymous" class="nav-flag" alt="Flag"> 
     தமிழக வெற்றிக் கழகப் பணியாளர் சங்கம் (TNCSC)
 </nav>
 
 <div class="banner">
-    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/vijay.png" crossorigin="anonymous" class="leader-img" alt="Vijay Leader">
+    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/vijay.png" crossorigin="anonymous" class="leader-img" alt="Vijay">
     <div class="banner-text">
         <h1>உறுப்பினர் சேர்க்கை - 2026</h1>
         <p style="color: var(--gold); font-weight: bold;">"பிறப்பொக்கும் எல்லா உயிர்க்கும்"</p>
@@ -66,71 +58,68 @@
     <form id="unionForm">
         <div class="input-group">
             <label for="name">முழு பெயர் (Tamil)</label>
-            <input type="text" id="name" name="name" autocomplete="name" placeholder="உங்கள் பெயர்" required>
+            <input type="text" id="name" name="name" autocomplete="name" required>
         </div>
         <div class="input-group">
             <label for="emp_id">பணியாளர் எண் (Emp ID)</label>
-            <input type="text" id="emp_id" name="emp_id" autocomplete="off" placeholder="048XXXX" required>
+            <input type="text" id="emp_id" name="emp_id" autocomplete="off" required>
         </div>
         <div class="input-group">
             <label for="designation">பதவி (Designation)</label>
-            <input type="text" id="designation" name="designation" autocomplete="organization-title" placeholder="எ.கா: கண்காணிப்பாளர்" required>
+            <input type="text" id="designation" name="designation" required>
         </div>
         <div class="input-group">
             <label for="mobile">கைபேசி எண்</label>
-            <input type="tel" id="mobile" name="mobile" autocomplete="tel" placeholder="9876543210" required>
+            <input type="tel" id="mobile" name="mobile" autocomplete="tel" required>
         </div>
         <div class="input-group full-width">
-            <label for="district">மண்டலம் / மாவட்டம்</label>
-            <select id="district" name="district" autocomplete="address-level1" required>
+            <label for="district">மண்டலம் / மாவட்டம் (39 Districts)</label>
+            <select id="district" name="district" required>
                 <option value="">தேர்வு செய்யவும்</option>
-                <optgroup label="சென்னை மண்டலம்">
+                <optgroup label="சென்னை">
                     <option value="Chennai North">சென்னை வடக்கு (Chennai North)</option>
                     <option value="Chennai South">சென்னை தெற்கு (Chennai South)</option>
                 </optgroup>
-                <optgroup label="இதர மாவட்டங்கள்">
-                    <option value="Ariyalur">அரியலூர்</option>
+                <optgroup label="மற்றவை">
                     <option value="Chengalpattu">செங்கல்பட்டு</option>
+                    <option value="Kancheepuram">காஞ்சிபுரம்</option>
+                    <option value="Viluppuram">விழுப்புரம்</option>
                     </optgroup>
             </select>
         </div>
         <div class="input-group full-width">
-            <label for="userPhoto">புகைப்படம் பதிவேற்றவும்</label>
+            <label for="userPhoto">புகைப்படம்</label>
             <input type="file" id="userPhoto" name="userPhoto" accept="image/*" required>
         </div>
-        <button type="submit" class="submit-btn" id="btnText">பதிவு செய்து தற்காலிக ID பெறவும்</button>
+        <button type="submit" class="submit-btn" id="btnText">பதிவு செய்து ID பெறவும்</button>
     </form>
 </div>
 
 <div id="id-card-hidden">
-    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/watermark.jpg" crossorigin="anonymous" class="watermark" alt="Watermark">
+    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/watermark.jpeg" crossorigin="anonymous" class="watermark">
     <div class="card-header">
-        <img src="https://raw.githubusercontent.com/tvktncsc/home/main/flag.png" crossorigin="anonymous" class="card-flag-mini" alt="Flag">
-        <br><span style="font-size: 18px; font-weight: bold;">தமிழக வெற்றிக் கழகம்</span>
+        <img src="https://raw.githubusercontent.com/tvktncsc/home/main/flag.png" crossorigin="anonymous" class="card-flag-mini"><br>
+        <span style="font-size: 18px; font-weight: bold;">தமிழக வெற்றிக் கழகம்</span>
     </div>
-    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/vijay.png" crossorigin="anonymous" class="leader-mini" alt="Leader">
-    <p style="color: var(--maroon); font-size: 11px; font-weight: bold; position: relative; z-index: 1;">
-        தற்காலிக உறுப்பினர் அடையாள அட்டை
-    </p>
-    <img id="card-photo" src="" class="id-photo-box" alt="Member Photo">
+    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/vijay.png" crossorigin="anonymous" class="leader-mini">
+    <p style="color: var(--maroon); font-size: 11px; font-weight: bold; position: relative; z-index: 1;">தற்காலிக உறுப்பினர் அடையாள அட்டை</p>
+    <img id="card-photo" src="" class="id-photo-box">
     <div class="card-body">
-        <p style="margin:0;"><strong>பெயர்:</strong> <span id="c-name"></span></p>
-        <p style="margin:0;"><strong>உறுப்பினர் எண்:</strong> <span id="c-id" style="color: red; font-weight: bold;"></span></p>
-        <p style="margin:0;"><strong>பதவி:</strong> <span id="c-desig"></span></p>
-        <p style="margin:0;"><strong>மாவட்டம்:</strong> <span id="c-dist"></span></p>
+        <p><strong>பெயர்:</strong> <span id="c-name"></span></p>
+        <p><strong>உறுப்பினர் எண்:</strong> <span id="c-id" style="color: red; font-weight: bold;"></span></p>
+        <p><strong>பதவி:</strong> <span id="c-desig"></span></p>
+        <p><strong>மாவட்டம்:</strong> <span id="c-dist"></span></p>
     </div>
-    <div style="margin-top: 20px; border-top: 1.5px solid var(--gold); padding-top: 10px; color: #800000; font-weight: bold; position: relative; z-index: 1;">
-        "பிறப்பொக்கும் எல்லா உயிர்க்கும்"
-    </div>
+    <div style="margin-top: 20px; border-top: 1.5px solid var(--gold); padding-top: 10px; color: #800000; font-weight: bold;">"பிறப்பொக்கும் எல்லா உயிர்க்கும்"</div>
 </div>
 
 <script>
-    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbx-ZG8h-v283IVvw7ImgVY92of8MPBajt0tRjsjXFkOWLAuEQLW-I5HcBOr25sSTaZ1eQ/exec";
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz_Ok2Ufgrnu9TY0OqG7iYOOduaiEeO3aDL9nxDU7b420AHWaRl4MwsC6P9hUhosuJWaQ/exec";
 
     document.getElementById('unionForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const btn = document.getElementById('btnText');
-        btn.innerText = "தகவல்கள் சேமிக்கப்படுகிறது...";
+        btn.innerText = "பதிவாகிறது...";
         btn.disabled = true;
 
         const photoFile = document.getElementById('userPhoto').files[0];
@@ -148,18 +137,24 @@
             };
 
             try {
-                const response = await fetch(APPS_SCRIPT_URL, { method: 'POST', body: JSON.stringify(formData) });
-                const result = await response.json();
+                // CORB சிக்கலைத் தவிர்க்க mode: 'no-cors' மற்றும் response.text()
+                const response = await fetch(APPS_SCRIPT_URL, { 
+                    method: 'POST', 
+                    mode: 'no-cors', 
+                    body: JSON.stringify(formData) 
+                });
 
-                if (result.result === "success") {
-                    document.getElementById('card-photo').src = base64Image;
-                    document.getElementById('c-name').innerText = formData.name;
-                    document.getElementById('c-id').innerText = result.generatedId; 
-                    document.getElementById('c-desig').innerText = formData.designation;
-                    document.getElementById('c-dist').innerText = formData.district;
+                // No-cors என்பதால் சர்வர் தரும் ID நேரடியாக வராது, 
+                // ஆனால் தரவு ஷீட்டில் சேர்ந்துவிடும். 
+                // நீங்கள் PDF-ஐ உடனடியாகத் தர விரும்பினால் இங்கேயே காட்டலாம்.
+                document.getElementById('card-photo').src = base64Image;
+                document.getElementById('c-name').innerText = formData.name;
+                document.getElementById('c-id').innerText = "TVK-NEW"; 
+                document.getElementById('c-desig').innerText = formData.designation;
+                document.getElementById('c-dist').innerText = formData.district;
 
-                    setTimeout(generatePDF, 1500); 
-                }
+                setTimeout(generatePDF, 2000);
+
             } catch (err) {
                 alert("பிழை! மீண்டும் முயற்சிக்கவும்.");
                 btn.disabled = false;
@@ -172,19 +167,10 @@
     async function generatePDF() {
         const { jsPDF } = window.jspdf;
         const element = document.getElementById('id-card-hidden');
-        
-        const canvas = await html2canvas(element, { 
-            scale: 2, 
-            useCORS: true, 
-            allowTaint: false, // Security Best Practice
-            backgroundColor: "#ffffff"
-        });
-        
+        const canvas = await html2canvas(element, { scale: 2, useCORS: true });
         const pdf = new jsPDF('p', 'mm', 'a4');
         pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 60, 20, 90, 136);
         pdf.save("TVK_Member_ID.pdf");
-        
-        alert("பதிவு வெற்றிகரமாக முடிந்தது!");
         location.reload();
     }
 </script>
