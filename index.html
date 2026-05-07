@@ -123,8 +123,7 @@
 
 <script>
     const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyvgdhnzmUuUbi98w-qFAUJOd3D83wFLO5vWTOU0ZBndv0y56R5ONr-KGHC15DkDzWpCg/exec";
-
-    document.getElementById('unionForm').addEventListener('submit', function(e) {
+document.getElementById('unionForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const btn = document.getElementById('btnText');
         btn.innerText = "பதிவு செய்யப்படுகிறது...";
@@ -135,18 +134,16 @@
 
         reader.onload = async function(event) {
             const base64Image = event.target.result;
-            
             const formData = {
                 name: document.getElementById('name').value,
                 emp_id: document.getElementById('emp_id').value,
                 designation: document.getElementById('designation').value,
                 district: document.getElementById('district').value,
                 mobile: document.getElementById('mobile').value,
-                image_data: base64Image // புகைப்படம் Base64 ஆக அனுப்பப்படுகிறது
+                image_data: base64Image 
             };
 
             try {
-                // 1. கூகுள் ஷீட்டிற்கு தரவுகளை அனுப்புதல்
                 const response = await fetch(APPS_SCRIPT_URL, {
                     method: 'POST',
                     body: JSON.stringify(formData)
@@ -155,27 +152,26 @@
                 const result = await response.json();
 
                 if (result.result === "success") {
-                    // 2. ஐடி கார்டு தயார் செய்தல்
+                    // சர்வர் உருவாக்கிய Membership ID-ஐப் பயன்படுத்துகிறோம்
                     document.getElementById('card-photo').src = base64Image;
                     document.getElementById('c-name').innerText = formData.name;
-                    document.getElementById('c-id').innerText = formData.emp_id;
+                    
+                    // இங்கே மாற்றப்பட்டுள்ளது: Employee ID-க்கு பதிலாக Membership ID
+                    document.getElementById('c-id').innerText = result.generatedId; 
+                    
                     document.getElementById('c-desig').innerText = formData.designation;
                     document.getElementById('c-dist').innerText = formData.district;
 
-                    // 3. PDF உருவாக்குதல்
                     setTimeout(generatePDF, 1000);
                 } else {
                     throw new Error(result.error);
                 }
-
             } catch (err) {
-                console.error(err);
-                alert("பிழை ஏற்பட்டது: " + err.message);
+                alert("பிழை: " + err.message);
                 btn.disabled = false;
                 btn.innerText = "பதிவு செய்யவும் & PDF பெறவும்";
             }
         };
-
         reader.readAsDataURL(photoFile);
     });
 
