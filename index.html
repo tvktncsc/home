@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TVK-TNCSC Union | Digital Portal</title>
+    <title>TVK-TNCSC Union | Full Digital Portal</title>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -11,39 +11,41 @@
     <style>
         :root { --maroon: #800000; --gold: #DAA520; --dark: #333; }
         body { font-family: 'Arial', sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
-        nav { background: var(--maroon); padding: 15px 5%; color: white; text-align: center; font-weight: bold; font-size: 1.2rem; }
-        .main-container { max-width: 800px; margin: 30px auto; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 10px solid var(--maroon); }
-        .form-header { padding: 20px; text-align: center; border-bottom: 2px solid var(--gold); }
+        nav { background: var(--maroon); padding: 15px 5%; color: white; text-align: center; font-weight: bold; font-size: 1.2rem; border-bottom: 4px solid var(--gold); }
+        .main-container { max-width: 850px; margin: 30px auto; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 10px solid var(--maroon); }
+        .form-header { padding: 20px; text-align: center; border-bottom: 1px solid #eee; }
         .form-header h1 { color: var(--maroon); margin: 0; }
         form { padding: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .input-group { display: flex; flex-direction: column; }
         .full-width { grid-column: span 2; }
         label { font-weight: bold; margin-bottom: 5px; color: var(--dark); }
         input, select { padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; }
-        .submit-btn { grid-column: span 2; background: var(--maroon); color: white; padding: 15px; border: none; border-radius: 5px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .submit-btn:hover { background: var(--dark); }
-        #id-card-hidden { position: absolute; left: -9999px; width: 350px; height: 500px; background: white; border: 5px solid var(--maroon); padding: 20px; text-align: center; }
-        .id-photo-box { width: 120px; height: 140px; border: 2px solid var(--maroon); margin: 20px auto; object-fit: cover; }
+        .submit-btn { grid-column: span 2; background: var(--maroon); color: white; padding: 18px; border: none; border-radius: 5px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .submit-btn:hover { background: #600000; }
+        .submit-btn:disabled { background: #ccc; }
+        #id-card-hidden { position: absolute; left: -9999px; width: 350px; height: 520px; background: white; border: 5px solid var(--maroon); padding: 20px; text-align: center; }
+        .temp-badge { background: var(--maroon); color: white; padding: 5px; font-size: 12px; font-weight: bold; margin-bottom: 10px; }
+        .id-photo-box { width: 130px; height: 150px; border: 2px solid var(--maroon); margin: 15px auto; object-fit: cover; }
     </style>
 </head>
 <body>
 
-<nav>TVK-TNCSC Union - உறுப்பினர் சேர்க்கை</nav>
+<nav>தமிழக வெற்றிக் கழகப் பணியாளர் சங்கம் (TNCSC)</nav>
 
 <div class="main-container">
     <div class="form-header">
-        <h1>தமிழக வெற்றிக் கழகம்</h1>
-        <p>பணியாளர் மற்றும் தொழிலாளர் சங்கம் (TNCSC)</p>
+        <h1>உறுப்பினர் சேர்க்கை படிவம்</h1>
+        <p>தமிழ்நாடு நுகர்பொருள் வாணிபக் கழக ஊழியர்களுக்கான தற்காலிக அடையாள அட்டை</p>
     </div>
 
     <form id="unionForm">
         <div class="input-group">
             <label>முழு பெயர் (Tamil)</label>
-            <input type="text" id="name" required>
+            <input type="text" id="name" placeholder="பெயரை உள்ளிடவும்" required>
         </div>
         <div class="input-group">
             <label>பணியாளர் எண் (Emp ID)</label>
-            <input type="text" id="emp_id" required>
+            <input type="text" id="emp_id" placeholder="048XXXX" required>
         </div>
         <div class="input-group">
             <label>பதவி (Designation)</label>
@@ -51,14 +53,14 @@
         </div>
         <div class="input-group">
             <label>கைபேசி எண்</label>
-            <input type="tel" id="mobile" required>
+            <input type="tel" id="mobile" placeholder="9876543210" required>
         </div>
         <div class="input-group full-width">
             <label>மண்டலம் / மாவட்டம்</label>
             <select id="district" required>
-                <option value="">தேர்வு செய்யவும்</option>
-                <option value="Chennai North">சென்னை வடக்கு</option>
-                <option value="Chennai South">சென்னை தெற்கு</option>
+                <option value="">மாவட்ைத் தேர்வு செய்யவும்</option>
+                <option value="Chennai North">சென்னை வடக்கு (Chennai North)</option>
+                <option value="Chennai South">சென்னை தெற்கு (Chennai South)</option>
                 <option value="Ariyalur">அரியலூர்</option>
                 <option value="Chengalpattu">செங்கல்பட்டு</option>
                 <option value="Coimbatore">கோயம்புத்தூர்</option>
@@ -99,7 +101,7 @@
             </select>
         </div>
         <div class="input-group full-width">
-            <label>புகைப்படம் பதிவேற்றவும் (ID Card)</label>
+            <label>புகைப்படம் பதிவேற்றவும்</label>
             <input type="file" id="userPhoto" accept="image/*" required>
         </div>
         <button type="submit" class="submit-btn" id="btnText">பதிவு செய்யவும் & PDF பெறவும்</button>
@@ -107,12 +109,13 @@
 </div>
 
 <div id="id-card-hidden">
-    <h2 style="color: #800000; margin: 0;">தமிழக வெற்றிக் கழகம்</h2>
-    <p style="font-size: 10px; font-weight: bold;">TVK-TNCSC Union</p>
+    <div class="temp-badge">தற்காலிக அடையாள அட்டை</div>
+    <h2 style="color: #800000; margin: 0; font-size: 20px;">தமிழக வெற்றிக் கழகம்</h2>
+    <p style="font-size: 11px; font-weight: bold; margin-bottom: 5px;">TVK-TNCSC Union</p>
     <img id="card-photo" src="" class="id-photo-box">
-    <div style="text-align: left; line-height: 1.8;">
+    <div style="text-align: left; line-height: 1.8; padding: 0 10px; font-size: 14px;">
         <p><strong>பெயர்:</strong> <span id="c-name"></span></p>
-        <p><strong>எண்:</strong> <span id="c-id"></span></p>
+        <p><strong>உறுப்பினர் எண்:</strong> <span id="c-id" style="color: red; font-weight: bold;"></span></p>
         <p><strong>பதவி:</strong> <span id="c-desig"></span></p>
         <p><strong>மாவட்டம்:</strong> <span id="c-dist"></span></p>
     </div>
@@ -123,10 +126,11 @@
 
 <script>
     const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyvgdhnzmUuUbi98w-qFAUJOd3D83wFLO5vWTOU0ZBndv0y56R5ONr-KGHC15DkDzWpCg/exec";
-document.getElementById('unionForm').addEventListener('submit', function(e) {
+
+    document.getElementById('unionForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const btn = document.getElementById('btnText');
-        btn.innerText = "பதிவு செய்யப்படுகிறது...";
+        btn.innerText = "தகவல்கள் சேமிக்கப்படுகிறது...";
         btn.disabled = true;
 
         const photoFile = document.getElementById('userPhoto').files[0];
@@ -152,13 +156,10 @@ document.getElementById('unionForm').addEventListener('submit', function(e) {
                 const result = await response.json();
 
                 if (result.result === "success") {
-                    // சர்வர் உருவாக்கிய Membership ID-ஐப் பயன்படுத்துகிறோம்
+                    // Update ID Card Template
                     document.getElementById('card-photo').src = base64Image;
                     document.getElementById('c-name').innerText = formData.name;
-                    
-                    // இங்கே மாற்றப்பட்டுள்ளது: Employee ID-க்கு பதிலாக Membership ID
                     document.getElementById('c-id').innerText = result.generatedId; 
-                    
                     document.getElementById('c-desig').innerText = formData.designation;
                     document.getElementById('c-dist').innerText = formData.district;
 
@@ -167,9 +168,9 @@ document.getElementById('unionForm').addEventListener('submit', function(e) {
                     throw new Error(result.error);
                 }
             } catch (err) {
-                alert("பிழை: " + err.message);
+                alert("பிழை ஏற்பட்டது: " + err.message);
                 btn.disabled = false;
-                btn.innerText = "பதிவு செய்யவும் & PDF பெறவும்";
+                btn.innerText = "மீண்டும் முயற்சிக்கவும்";
             }
         };
         reader.readAsDataURL(photoFile);
@@ -183,7 +184,7 @@ document.getElementById('unionForm').addEventListener('submit', function(e) {
         
         const pdf = new jsPDF('p', 'mm', 'a4');
         pdf.addImage(imgData, 'PNG', 60, 20, 90, 130);
-        pdf.save("TVK_Union_ID.pdf");
+        pdf.save("TVK_Temporary_ID.pdf");
 
         alert("பதிவு முடிந்தது! உங்கள் அடையாள அட்டை பதிவிறக்கம் செய்யப்படுகிறது.");
         location.reload();
