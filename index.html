@@ -11,26 +11,17 @@
     <style>
         :root { --maroon: #800000; --gold: #DAA520; --dark: #333; }
         body { font-family: 'Arial', sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
-        
-        /* Navbar */
         nav { background: var(--maroon); padding: 15px 5%; color: white; text-align: center; font-weight: bold; font-size: 1.2rem; }
-
-        /* Container */
         .main-container { max-width: 800px; margin: 30px auto; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 10px solid var(--maroon); }
         .form-header { padding: 20px; text-align: center; border-bottom: 2px solid var(--gold); }
         .form-header h1 { color: var(--maroon); margin: 0; }
-
-        /* Form Styling */
         form { padding: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .input-group { display: flex; flex-direction: column; }
         .full-width { grid-column: span 2; }
         label { font-weight: bold; margin-bottom: 5px; color: var(--dark); }
         input, select { padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; }
-        
         .submit-btn { grid-column: span 2; background: var(--maroon); color: white; padding: 15px; border: none; border-radius: 5px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
         .submit-btn:hover { background: var(--dark); }
-
-        /* Hidden ID Card Template */
         #id-card-hidden { position: absolute; left: -9999px; width: 350px; height: 500px; background: white; border: 5px solid var(--maroon); padding: 20px; text-align: center; }
         .id-photo-box { width: 120px; height: 140px; border: 2px solid var(--maroon); margin: 20px auto; object-fit: cover; }
     </style>
@@ -63,15 +54,49 @@
             <input type="tel" id="mobile" required>
         </div>
         <div class="input-group full-width">
-            <label>மாவட்டம்</label>
+            <label>மண்டலம் / மாவட்டம்</label>
             <select id="district" required>
                 <option value="">தேர்வு செய்யவும்</option>
                 <option value="Chennai North">சென்னை வடக்கு</option>
                 <option value="Chennai South">சென்னை தெற்கு</option>
+                <option value="Ariyalur">அரியலூர்</option>
                 <option value="Chengalpattu">செங்கல்பட்டு</option>
+                <option value="Coimbatore">கோயம்புத்தூர்</option>
+                <option value="Cuddalore">கடலூர்</option>
+                <option value="Dharmapuri">தர்மபுரி</option>
+                <option value="Dindigul">திண்டுக்கல்</option>
+                <option value="Erode">ஈரோடு</option>
                 <option value="Kallakurichi">கள்ளக்குறிச்சி</option>
                 <option value="Kancheepuram">காஞ்சிபுரம்</option>
-                </select>
+                <option value="Kanniyakumari">கன்னியாகுமரி</option>
+                <option value="Karur">கரூர்</option>
+                <option value="Krishnagiri">கிருஷ்ணகிரி</option>
+                <option value="Madurai">மதுரை</option>
+                <option value="Mayiladuthurai">மயிலாடுதுறை</option>
+                <option value="Nagapattinam">நாகப்பட்டினம்</option>
+                <option value="Namakkal">நாமக்கல்</option>
+                <option value="Nilgiris">நீலகிரி</option>
+                <option value="Perambalur">பெரம்பலூர்</option>
+                <option value="Pudukkottai">புதுக்கோட்டை</option>
+                <option value="Ramanathapuram">ராமநாதபுரம்</option>
+                <option value="Ranipet">ராணிப்பேட்டை</option>
+                <option value="Salem">சேலம்</option>
+                <option value="Sivaganga">சிவங்கை</option>
+                <option value="Tenkasi">தென்காசி</option>
+                <option value="Thanjavur">தஞ்சாவூர்</option>
+                <option value="Theni">தேனி</option>
+                <option value="Thoothukudi">தூத்துக்குடி</option>
+                <option value="Tiruchirappalli">திருச்சிராப்பள்ளி</option>
+                <option value="Tirunelveli">திருநெல்வேலி</option>
+                <option value="Tirupathur">திருப்பத்தூர்</option>
+                <option value="Tiruppur">திருப்பூர்</option>
+                <option value="Tiruvallur">திருவள்ளூர்</option>
+                <option value="Tiruvannamalai">திருவண்ணாமலை</option>
+                <option value="Tiruvarur">திருவாரூர்</option>
+                <option value="Vellore">வேலூர்</option>
+                <option value="Viluppuram">விழுப்புரம்</option>
+                <option value="Virudhunagar">விருதுநகர்</option>
+            </select>
         </div>
         <div class="input-group full-width">
             <label>புகைப்படம் பதிவேற்றவும் (ID Card)</label>
@@ -99,48 +124,59 @@
 <script>
     const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyvgdhnzmUuUbi98w-qFAUJOd3D83wFLO5vWTOU0ZBndv0y56R5ONr-KGHC15DkDzWpCg/exec";
 
-    document.getElementById('unionForm').addEventListener('submit', async function(e) {
+    document.getElementById('unionForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const btn = document.getElementById('btnText');
         btn.innerText = "பதிவு செய்யப்படுகிறது...";
         btn.disabled = true;
 
-        const data = {
-            name: document.getElementById('name').value,
-            emp_id: document.getElementById('emp_id').value,
-            designation: document.getElementById('designation').value,
-            district: document.getElementById('district').value,
-            mobile: document.getElementById('mobile').value
+        const photoFile = document.getElementById('userPhoto').files[0];
+        const reader = new FileReader();
+
+        reader.onload = async function(event) {
+            const base64Image = event.target.result;
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                emp_id: document.getElementById('emp_id').value,
+                designation: document.getElementById('designation').value,
+                district: document.getElementById('district').value,
+                mobile: document.getElementById('mobile').value,
+                image_data: base64Image // புகைப்படம் Base64 ஆக அனுப்பப்படுகிறது
+            };
+
+            try {
+                // 1. கூகுள் ஷீட்டிற்கு தரவுகளை அனுப்புதல்
+                const response = await fetch(APPS_SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+
+                if (result.result === "success") {
+                    // 2. ஐடி கார்டு தயார் செய்தல்
+                    document.getElementById('card-photo').src = base64Image;
+                    document.getElementById('c-name').innerText = formData.name;
+                    document.getElementById('c-id').innerText = formData.emp_id;
+                    document.getElementById('c-desig').innerText = formData.designation;
+                    document.getElementById('c-dist').innerText = formData.district;
+
+                    // 3. PDF உருவாக்குதல்
+                    setTimeout(generatePDF, 1000);
+                } else {
+                    throw new Error(result.error);
+                }
+
+            } catch (err) {
+                console.error(err);
+                alert("பிழை ஏற்பட்டது: " + err.message);
+                btn.disabled = false;
+                btn.innerText = "பதிவு செய்யவும் & PDF பெறவும்";
+            }
         };
 
-        const photoFile = document.getElementById('userPhoto').files[0];
-
-        // 1. Save to Google Sheets
-        try {
-            await fetch(APPS_SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: JSON.stringify(data)
-            });
-
-            // 2. Prepare ID Card Preview
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                document.getElementById('card-photo').src = event.target.result;
-                document.getElementById('c-name').innerText = data.name;
-                document.getElementById('c-id').innerText = data.emp_id;
-                document.getElementById('c-desig').innerText = data.designation;
-                document.getElementById('c-dist').innerText = data.district;
-
-                // 3. Generate PDF
-                setTimeout(generatePDF, 1000);
-            };
-            reader.readAsDataURL(photoFile);
-
-        } catch (err) {
-            alert("பிழை ஏற்பட்டது!");
-            btn.disabled = false;
-        }
+        reader.readAsDataURL(photoFile);
     });
 
     async function generatePDF() {
