@@ -31,7 +31,7 @@
         .submit-btn { grid-column: span 2; background: var(--maroon); color: white; padding: 18px; border: none; border-radius: 6px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
         .submit-btn:hover { background: #600000; }
 
-        /* ID Card with Watermark */
+        /* ID Card hidden from screen */
         #id-card-hidden { 
             position: absolute; left: -9999px; width: 350px; height: 530px; 
             background: white; border: 6px solid var(--maroon); padding: 0; text-align: center; overflow: hidden;
@@ -50,12 +50,12 @@
 <body>
 
 <nav>
-    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/flag.png" class="nav-flag"> 
+    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/flag.png" crossorigin="anonymous" class="nav-flag"> 
     தமிழக வெற்றிக் கழகப் பணியாளர் சங்கம் (TNCSC)
 </nav>
 
 <div class="banner">
-    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/vijay.png" class="leader-img">
+    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/vijay.png" crossorigin="anonymous" class="leader-img">
     <div class="banner-text">
         <h1>உறுப்பினர் சேர்க்கை - 2026</h1>
         <p style="color: var(--gold); font-weight: bold;">"பிறப்பொக்கும் எல்லா உயிர்க்கும்"</p>
@@ -138,12 +138,12 @@
 </div>
 
 <div id="id-card-hidden">
-    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/watermark.jpeg" class="watermark">
+    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/watermark.jpeg" crossorigin="anonymous" class="watermark">
     <div class="card-header">
-        <img src="https://raw.githubusercontent.com/tvktncsc/home/main/flag.png" class="card-flag-mini"><br>
+        <img src="https://raw.githubusercontent.com/tvktncsc/home/main/flag.png" crossorigin="anonymous" class="card-flag-mini"><br>
         <span style="font-size: 18px; font-weight: bold;">தமிழக வெற்றிக் கழகம்</span>
     </div>
-    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/vijay.png" class="leader-mini">
+    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/vijay.png" crossorigin="anonymous" class="leader-mini">
     <p style="color: var(--maroon); font-size: 11px; font-weight: bold; position: relative; z-index: 1;">
         தற்காலிக உறுப்பினர் அடையாள அட்டை
     </p>
@@ -183,17 +183,22 @@
             };
 
             try {
+                // Google Apps Script-க்கு டேட்டாவை அனுப்புதல்
                 const response = await fetch(APPS_SCRIPT_URL, { method: 'POST', body: JSON.stringify(formData) });
                 const result = await response.json();
 
                 if (result.result === "success") {
+                    // ஐடி கார்டில் விபரங்களை நிரப்புதல்
                     document.getElementById('card-photo').src = base64Image;
                     document.getElementById('c-name').innerText = formData.name;
                     document.getElementById('c-id').innerText = result.generatedId; 
                     document.getElementById('c-desig').innerText = formData.designation;
                     document.getElementById('c-dist').innerText = formData.district;
 
+                    // படங்கள் லோட் ஆக சிறிது நேரம் காத்திருத்தல்
                     setTimeout(generatePDF, 1500); 
+                } else {
+                    throw new Error("Server error");
                 }
             } catch (err) {
                 alert("பிழை! மீண்டும் முயற்சிக்கவும்.");
@@ -207,10 +212,21 @@
     async function generatePDF() {
         const { jsPDF } = window.jspdf;
         const element = document.getElementById('id-card-hidden');
-        const canvas = await html2canvas(element, { scale: 2, useCORS: true, backgroundColor: "#ffffff" });
+        
+        // html2canvas-ல் useCORS மற்றும் allowTaint ஆன் செய்வது அவசியம்
+        const canvas = await html2canvas(element, { 
+            scale: 2, 
+            useCORS: true, 
+            allowTaint: true,
+            backgroundColor: "#ffffff",
+            logging: false
+        });
+        
         const pdf = new jsPDF('p', 'mm', 'a4');
         pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 60, 20, 90, 136);
         pdf.save("TVK_Member_ID.pdf");
+        
+        alert("பதிவு முடிந்தது! உங்கள் அடையாள அட்டை பதிவிறக்கம் செய்யப்படுகிறது.");
         location.reload();
     }
 </script>
