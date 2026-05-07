@@ -12,79 +12,60 @@
         :root { --maroon: #800000; --gold: #DAA520; --dark: #333; }
         body { font-family: 'Arial', sans-serif; background: #f4f4f4; margin: 0; padding: 0; }
         
-        /* Navbar with TVK Colors */
         nav { 
-            background: var(--maroon); 
-            padding: 15px; 
-            color: white; 
-            text-align: center; 
-            font-weight: bold; 
-            font-size: 1.2rem; 
-            border-bottom: 4px solid var(--gold);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
+            background: var(--maroon); padding: 15px; color: white; text-align: center; font-weight: bold; font-size: 1.2rem; 
+            border-bottom: 4px solid var(--gold); display: flex; justify-content: center; align-items: center; gap: 15px;
         }
-        .nav-flag { height: 40px; border-radius: 3px; }
+        .nav-flag { height: 45px; }
 
-        /* Banner with Leader Image */
-        .banner {
-            background: white;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-            border-bottom: 2px solid #eee;
-        }
-        .leader-img { height: 130px; border-radius: 10px; border: 2px solid var(--gold); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .banner-text h1 { color: var(--maroon); margin: 0; font-size: 1.8rem; }
-        .banner-text p { color: var(--gold); font-weight: bold; margin: 5px 0; font-size: 1.1rem; }
+        .banner { background: white; padding: 20px; display: flex; justify-content: center; align-items: center; gap: 40px; border-bottom: 1px solid #ddd; }
+        .leader-img { height: 140px; border-radius: 10px; border: 2px solid var(--gold); box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .banner-text h1 { color: var(--maroon); margin: 0; font-size: 2rem; }
 
-        .main-container { max-width: 850px; margin: 20px auto; background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 10px solid var(--maroon); }
-        
-        form { padding: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .main-container { max-width: 850px; margin: 25px auto; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); border-top: 10px solid var(--maroon); }
+        form { padding: 35px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .input-group { display: flex; flex-direction: column; }
         .full-width { grid-column: span 2; }
-        label { font-weight: bold; margin-bottom: 5px; color: var(--dark); }
-        input, select { padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; }
-        
-        .submit-btn { grid-column: span 2; background: var(--maroon); color: white; padding: 18px; border: none; border-radius: 5px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .submit-btn:hover { background: #600000; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        label { font-weight: bold; margin-bottom: 8px; color: var(--dark); }
+        input, select { padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem; }
+        .submit-btn { grid-column: span 2; background: var(--maroon); color: white; padding: 18px; border: none; border-radius: 6px; font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .submit-btn:hover { background: #600000; }
 
-        /* ID Card hidden for Rendering */
+        /* ID Card with Watermark */
         #id-card-hidden { 
             position: absolute; left: -9999px; width: 350px; height: 530px; 
-            background: white; border: 6px solid var(--maroon); padding: 0; text-align: center; 
+            background: white; border: 6px solid var(--maroon); padding: 0; text-align: center; overflow: hidden;
         }
-        .card-header { background: var(--maroon); padding: 12px; color: white; }
-        .card-flag-mini { height: 35px; margin-bottom: 5px; }
-        .leader-mini { position: absolute; right: 15px; top: 60px; height: 70px; border: 1px solid var(--gold); border-radius: 5px; }
-        .id-photo-box { width: 120px; height: 145px; border: 2px solid var(--maroon); margin: 15px auto; object-fit: cover; background: #f9f9f9; }
-        .temp-label { color: var(--maroon); font-size: 11px; font-weight: bold; margin-top: 5px; }
+        .watermark {
+            position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%);
+            width: 260px; opacity: 0.12; z-index: 0; pointer-events: none;
+        }
+        .card-header { background: var(--maroon); padding: 12px; color: white; position: relative; z-index: 1; }
+        .card-flag-mini { height: 35px; }
+        .leader-mini { position: absolute; right: 15px; top: 65px; height: 75px; border: 1px solid var(--gold); border-radius: 5px; z-index: 1; }
+        .id-photo-box { width: 120px; height: 145px; border: 2px solid var(--maroon); margin: 15px auto; object-fit: cover; position: relative; z-index: 1; background: #fff; }
+        .card-body { position: relative; z-index: 1; text-align: left; padding: 0 25px; font-size: 14px; line-height: 2; }
     </style>
 </head>
 <body>
 
 <nav>
-    <img src="https://www.tvkvijay.com/assets/images/flag.png" class="nav-flag" alt="TVK Flag"> 
+    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/flag.png" class="nav-flag"> 
     தமிழக வெற்றிக் கழகப் பணியாளர் சங்கம் (TNCSC)
 </nav>
 
 <div class="banner">
-    <img src="https://www.tvkvijay.com/assets/images/leader.png" class="leader-img" alt="Thalapathy Vijay">
+    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/vijay.png" class="leader-img">
     <div class="banner-text">
         <h1>உறுப்பினர் சேர்க்கை - 2026</h1>
-        <p>"பிறப்பொக்கும் எல்லா உயிர்க்கும்"</p>
-        <span style="color: #666; font-size: 0.9rem;">(தமிழ்நாடு நுகர்பொருள் வாணிபக் கழகம்)</span>
+        <p style="color: var(--gold); font-weight: bold;">"பிறப்பொக்கும் எல்லா உயிர்க்கும்"</p>
     </div>
 </div>
 
 <div class="main-container">
     <form id="unionForm">
         <div class="input-group">
-            <label>பெயர் (Tamil)</label>
+            <label>முழு பெயர் (Tamil)</label>
             <input type="text" id="name" placeholder="உங்கள் பெயர்" required>
         </div>
         <div class="input-group">
@@ -100,10 +81,10 @@
             <input type="tel" id="mobile" placeholder="9876543210" required>
         </div>
         <div class="input-group full-width">
-            <label>மண்டலம் / மாவட்டம் (39 மாவட்டங்கள்)</label>
+            <label>மண்டலம் / மாவட்டம்</label>
             <select id="district" required>
-                <option value="">மாவட்ைத் தேர்வு செய்யவும்</option>
-                <optgroup label="தலைநகரம்">
+                <option value="">தேர்வு செய்யவும்</option>
+                <optgroup label="சென்னை மண்டலம்">
                     <option value="Chennai North">சென்னை வடக்கு (Chennai North)</option>
                     <option value="Chennai South">சென்னை தெற்கு (Chennai South)</option>
                 </optgroup>
@@ -149,7 +130,7 @@
             </select>
         </div>
         <div class="input-group full-width">
-            <label>உறுப்பினர் புகைப்படம்</label>
+            <label>புகைப்படம் பதிவேற்றவும்</label>
             <input type="file" id="userPhoto" accept="image/*" required>
         </div>
         <button type="submit" class="submit-btn" id="btnText">பதிவு செய்து தற்காலிக ID பெறவும்</button>
@@ -157,28 +138,25 @@
 </div>
 
 <div id="id-card-hidden">
+    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/watermark.jpeg" class="watermark">
     <div class="card-header">
-        <img src="https://www.tvkvijay.com/assets/images/flag.png" class="card-flag-mini"><br>
-        <span style="font-size: 18px; letter-spacing: 1px;">தமிழக வெற்றிக் கழகம்</span>
+        <img src="https://raw.githubusercontent.com/tvktncsc/home/main/flag.png" class="card-flag-mini"><br>
+        <span style="font-size: 18px; font-weight: bold;">தமிழக வெற்றிக் கழகம்</span>
     </div>
-    
-    <img src="https://www.tvkvijay.com/assets/images/leader.png" class="leader-mini">
-    
-    <p class="temp-label">தற்காலிக உறுப்பினர் அடையாள அட்டை (TNCSC UNION)</p>
-    
+    <img src="https://raw.githubusercontent.com/tvktncsc/home/main/vijay.png" class="leader-mini">
+    <p style="color: var(--maroon); font-size: 11px; font-weight: bold; position: relative; z-index: 1;">
+        தற்காலிக உறுப்பினர் அடையாள அட்டை
+    </p>
     <img id="card-photo" src="" class="id-photo-box">
-    
-    <div style="text-align: left; line-height: 2; padding: 0 25px; font-size: 14px;">
+    <div class="card-body">
         <p style="margin:0;"><strong>பெயர்:</strong> <span id="c-name"></span></p>
         <p style="margin:0;"><strong>உறுப்பினர் எண்:</strong> <span id="c-id" style="color: red; font-weight: bold;"></span></p>
         <p style="margin:0;"><strong>பதவி:</strong> <span id="c-desig"></span></p>
         <p style="margin:0;"><strong>மாவட்டம்:</strong> <span id="c-dist"></span></p>
     </div>
-    
-    <div style="margin-top: 20px; border-top: 1.5px solid var(--gold); padding-top: 10px; color: #800000; font-weight: bold; font-size: 15px;">
+    <div style="margin-top: 20px; border-top: 1.5px solid var(--gold); padding-top: 10px; color: #800000; font-weight: bold; position: relative; z-index: 1;">
         "பிறப்பொக்கும் எல்லா உயிர்க்கும்"
     </div>
-    <p style="font-size: 9px; color: #777;">*நிர்வாக முடிவுகளுக்கு உட்பட்டது</p>
 </div>
 
 <script>
@@ -187,7 +165,7 @@
     document.getElementById('unionForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const btn = document.getElementById('btnText');
-        btn.innerText = "உறுப்பினர் விபரங்கள் சேமிக்கப்படுகிறது...";
+        btn.innerText = "தகவல்கள் சேமிக்கப்படுகிறது...";
         btn.disabled = true;
 
         const photoFile = document.getElementById('userPhoto').files[0];
@@ -205,25 +183,20 @@
             };
 
             try {
-                const response = await fetch(APPS_SCRIPT_URL, {
-                    method: 'POST',
-                    body: JSON.stringify(formData)
-                });
+                const response = await fetch(APPS_SCRIPT_URL, { method: 'POST', body: JSON.stringify(formData) });
                 const result = await response.json();
 
                 if (result.result === "success") {
-                    // அட்டைக்குத் தகவல்களை ஏற்றுதல்
                     document.getElementById('card-photo').src = base64Image;
                     document.getElementById('c-name').innerText = formData.name;
                     document.getElementById('c-id').innerText = result.generatedId; 
                     document.getElementById('c-desig').innerText = formData.designation;
                     document.getElementById('c-dist').innerText = formData.district;
 
-                    // PDF உருவாக்குதல்
-                    setTimeout(generatePDF, 1000);
+                    setTimeout(generatePDF, 1500); 
                 }
             } catch (err) {
-                alert("தொழில்நுட்ப கோளாறு! மீண்டும் முயற்சிக்கவும்.");
+                alert("பிழை! மீண்டும் முயற்சிக்கவும்.");
                 btn.disabled = false;
                 btn.innerText = "பதிவு செய்யவும்";
             }
@@ -234,14 +207,10 @@
     async function generatePDF() {
         const { jsPDF } = window.jspdf;
         const element = document.getElementById('id-card-hidden');
-        const canvas = await html2canvas(element, { scale: 2, useCORS: true });
-        
+        const canvas = await html2canvas(element, { scale: 2, useCORS: true, backgroundColor: "#ffffff" });
         const pdf = new jsPDF('p', 'mm', 'a4');
-        // அட்டையை PDF-ன் நடுவில் வைக்க
         pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 60, 20, 90, 136);
-        pdf.save("TVK_Temporary_Member_ID.pdf");
-        
-        alert("பதிவு வெற்றிகரமாக முடிந்தது! உங்களின் தற்காலிக அடையாள அட்டை பதிவிறக்கம் செய்யப்பட்டுள்ளது.");
+        pdf.save("TVK_Member_ID.pdf");
         location.reload();
     }
 </script>
